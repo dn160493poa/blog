@@ -64,8 +64,15 @@
                                             <td class="text-center">{{ $category->id }}</td>
                                             <td class="text-center">{{ $category->title }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('admin.category.show', $category->id)}}"><i class="far fa-eye"></i></a>
+                                                <a href="{{ route('admin.category.show', $category->id)}}"><i class="far fa-eye pr-1"></i></a>
                                                 <a href="{{ route('admin.category.edit', $category->id)}}"><i class="fas fa-pencil-alt"></i></a>
+                                                <form action="{{ route('admin.category.delete', $category->id)}}" method="POST"  class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="border-0 bg-transparent">
+                                                        <i class="fas fa-trash text-danger" role="button" ></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
