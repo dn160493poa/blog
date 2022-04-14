@@ -65,6 +65,10 @@
                                             <td class="text-center">Title</td>
                                             <td class="text-center">{{ $post->title }}</td>
                                         </tr>
+                                        <tr>
+                                            <td class="text-center">Content</td>
+                                            <td class="text-center">{{ $post->content }}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
