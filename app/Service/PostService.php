@@ -15,8 +15,10 @@ class PostService
         try {
             DB::beginTransaction();
 
-            $tag_ids = $data['tag_ids'];
-            unset($data['tag_ids']);
+            if(isset($data['tag_ids'])){
+                $tag_ids = $data['tag_ids'];
+                unset($data['tag_ids']);
+            }
 
             if(isset($data['main_image'])){
                 $data['main_image'] = Storage::disk('public')->put('/images/main', $data['main_image']);
@@ -26,7 +28,10 @@ class PostService
             }
 
             $post = Post::firstOrCreate($data); // the same as - Category::firstOrCreate(['title'=> $data['title']]);
-            $post->tags()->attach($tag_ids);
+
+            if(isset($tag_ids)){
+                $post->tags()->attach($tag_ids);
+            }
 
             DB::commit();
         }catch (\Exception $exception){
@@ -39,8 +44,10 @@ class PostService
         try {
             DB::beginTransaction();
 
-            $tag_ids = $data['tag_ids'];
-            unset($data['tag_ids']);
+            if(isset($data['tag_ids'])){
+                $tag_ids = $data['tag_ids'];
+                unset($data['tag_ids']);
+            }
 
             if(isset($data['main_image'])){
                 $data['main_image'] = Storage::disk('public')->put('/images/main', $data['main_image']);
@@ -50,7 +57,9 @@ class PostService
             }
 
             $post->update($data);
-            $post->tags()->sync($tag_ids);
+            if(isset($tag_ids)){
+                $post->tags()->sync($tag_ids);
+            }
 
             DB::commit();
         }catch (\Exception $exception){

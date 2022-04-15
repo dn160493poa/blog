@@ -101,6 +101,9 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @error('tag_ids')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" value="Edit">
