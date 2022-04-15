@@ -59,6 +59,8 @@
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- bs-custom-file-input -->
+<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
@@ -84,6 +86,7 @@
             }
         );
     });
+    bsCustomFileInput.init();
 </script>
 </body>
 </html>
