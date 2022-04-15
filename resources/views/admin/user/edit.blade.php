@@ -30,8 +30,16 @@
                             @csrf
                             @method('PATCH')
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Value of title" name="title" value="{{ $user->name }}">
-                                @error('title')
+                                <input type="text" class="form-control" placeholder="Value of name" name="name"
+                                       value="{{ $user->name }}">
+                                @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Email" name="email"
+                                       value="{{ $user->email }}">
+                                @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
