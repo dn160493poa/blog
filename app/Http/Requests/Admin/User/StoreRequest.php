@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string',
+            //'password' => 'required|string',
             'role_id' => 'required|integer'
         ];
     }
@@ -40,8 +40,8 @@ class StoreRequest extends FormRequest
             'email.string' => 'Email must be string',
             'email.email' => 'Email must be in supporting email formats',
             'email.unique' => 'Email is already exist',
-            'password.required' => 'Password is required',
-            'password.string' => 'Password must be string',
+            //'password.required' => 'Password is required',
+            //'password.string' => 'Password must be string',
         ];
     }
 }
