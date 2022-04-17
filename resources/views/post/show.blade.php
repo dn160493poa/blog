@@ -19,21 +19,41 @@
             </section>
             <div class="row">
                 <div class="col-lg-9 mx-auto">
-                    <section class="related-posts">
-                        <h2 class="section-title mb-4" data-aos="fade-up">Related Posts</h2>
-                        <div class="row">
-                            @foreach($related_posts as $related_post)
-                                <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-                                    <img src="{{ asset('storage/' . $related_post->main_image) }}" alt="related post"
-                                         class="post-thumbnail">
-                                    <p class="post-category">{{ $related_post->category->title }}</p>
-                                    <a href="{{ route('post.show', $related_post->id )}}">
-                                        <h5 class="post-title">{{ $related_post->title }}</h5>
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
+                    <section class="py-3">
+                        @auth()
+                            <form action="{{ route('post.likes.store', $post->id) }}" method="POST">
+                                @csrf
+                                <span>{{ $post->liked_users_count }}</span>
+                                <button type="submit" class="border-0 bg-transparent">
+                                    <i class="fa{{ auth()->user()->likedPosts->contains($post->id) ? 's' : 'r' }} fa-heart"></i>
+                                </button>
+                            </form>
+                        @endauth
+                        @guest()
+                            <div>
+                                <span>{{ $post->liked_users_count }}</span>
+                                <i class="far fa-heart"></i>
+                            </div>
+                        @endguest
                     </section>
+                    @if( $related_posts->count() > 0)
+                        <section class="related-posts">
+                            <h2 class="section-title mb-4" data-aos="fade-up">Related Posts</h2>
+                            <div class="row">
+                                @foreach($related_posts as $related_post)
+                                    <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                                        <img src="{{ asset('storage/' . $related_post->main_image) }}"
+                                             alt="related post"
+                                             class="post-thumbnail">
+                                        <p class="post-category">{{ $related_post->category->title }}</p>
+                                        <a href="{{ route('post.show', $related_post->id )}}">
+                                            <h5 class="post-title">{{ $related_post->title }}</h5>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </section>
+                    @endif
                     <section class="comments-list mb-5">
                         <h2 class="section-title mb-5" data-aos="fade-up">Comments ({{ $post->comments->count() }})</h2>
                         @foreach($post->comments as $comment)
