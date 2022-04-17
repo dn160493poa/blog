@@ -11,6 +11,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Main</a></li>
                         <li class="breadcrumb-item active">Liked</li>
                     </ol>
                 </div><!-- /.col -->
@@ -58,7 +59,6 @@
                                         <td class="text-center">{{ $post->id }}</td>
                                         <td class="text-center">{{ $post->title }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.post.show', $post->id)}}"><i class="far fa-eye pr-1"></i></a>
                                             <form action="{{ route('personal.liked.delete', $post->id)}}" method="POST"  class="d-inline">
                                                 @csrf
                                                 @method('DELETE')

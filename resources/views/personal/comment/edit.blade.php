@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('personal.layouts.main')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit category</h1>
+                        <h1 class="m-0">Edit comment</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Main</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.category.index') }}">Tags</a></li>
-                            <li class="breadcrumb-item active">{{ $category->title }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Main</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.comment.index') }}">Comments</a></li>
+                            <li class="breadcrumb-item active">{{ $comment->message }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -27,12 +27,12 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{ route('admin.category.update', $category->id)}}" method="post" class="w-25">
+                        <form action="{{ route('personal.comment.update', $comment->id)}}" method="post" class="w-50">
                             @csrf
                             @method('PATCH')
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Value of title" name="title" value="{{ $category->title }}">
-                                @error('title')
+                                <textarea class="form-control" name="message" cols="30" rows="10">{{ $comment->message }}</textarea>
+                                @error('message')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

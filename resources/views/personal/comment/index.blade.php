@@ -11,6 +11,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Main</a></li>
                         <li class="breadcrumb-item active">Comments</li>
                     </ol>
                 </div><!-- /.col -->
@@ -24,7 +25,57 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Responsive Hover Table</h3>
 
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control float-right"
+                                           placeholder="Search">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($comments as $comment)
+                                    <tr>
+                                        <td class="text-center">{{ $comment->id }}</td>
+                                        <td class="text-center">{{ $comment->message }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('personal.comment.edit', $comment->id)}}"><i class="fas fa-pencil-alt"></i></a>
+                                            <form action="{{ route('personal.comment.delete', $comment->id)}}" method="POST"  class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    <i class="fas fa-trash text-danger" role="button" ></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
