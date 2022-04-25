@@ -12,7 +12,7 @@
                                 <img src="{{ 'storage/' . $post->main_image }}" alt="blog post">
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p class="blog-post-category">{{ $post->category->title }}</p>
+                                <p class="blog-post-category">{{ $post->category_title }}</p>
                                 @auth()
                                     <form action="{{ route('post.likes.store', $post->id) }}" method="POST">
                                         @csrf
@@ -52,7 +52,7 @@
                                     <div class="blog-post-thumbnail-wrapper">
                                         <img src="{{ 'storage/' . $post->main_image }}" alt="blog post">
                                     </div>
-                                    <p class="blog-post-category">{{ $post->category->title }}</p>
+                                    <p class="blog-post-category">{{ $post->category_title }}</p>
                                     <a href="{{ route('post.show', $post->id) }}" class="blog-post-permalink">
                                         <h6 class="blog-post-title">{{ $post->title }}</h6>
                                     </a>
